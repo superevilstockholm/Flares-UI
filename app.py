@@ -1,15 +1,16 @@
-from flask import Flask, render_template_string
-
+import uvicorn
+from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
 from flares_ui import Container_Component, GridSystem, Typography
-
-app = Flask(__name__)
 
 container_component = Container_Component
 gridsystem = GridSystem
 typography = Typography
 
-@app.route('/')
-def complex_ui():
+app = FastAPI()
+
+@app.get('/')
+async def complex_ui():
     html_component = container_component.Container_Fluid(
         bs_class=("p-3", "bg-light"),
         style="min-height: 100vh;",
@@ -60,7 +61,7 @@ def complex_ui():
         )
     )
     
-    return render_template_string(f"""
+    return HTMLResponse(content=f"""
         <html>
             <head>
                 <title>Flares UI Example</title>
@@ -71,4 +72,4 @@ def complex_ui():
     """)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    uvicorn.run("app:app", reload=True, reload_includes=["*.py"])
