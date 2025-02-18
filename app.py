@@ -63,7 +63,7 @@ def complex_ui():
     return render_template_string(f"""
         <html>
             <head>
-                <title>Complex UI Example</title>
+                <title>Flares UI Example</title>
                 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
             </head>
             <body>{html_component}</body>
